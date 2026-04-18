@@ -53,6 +53,37 @@ When you're about to write a new rule, skill, script, or resource, run this chec
 3. **Is it personal to Jeremie?** → Astra CoS only (`~/astra/skills/*/SKILL.md` or CoS memory). Never anywhere in Astra Core or Astra AI Product.
 4. **Is it client-specific (Équipement Capital, Construction BA)?** → `~/astra-ai/api/clients/<client-dir>/` only. Never in core or CoS.
 
+## Format routing — skill, memory, or project config?
+
+The previous section decides *which repo*. This section decides *which format* within a repo. The two are orthogonal.
+
+| Content shape | Home | Reason | Example |
+|---|---|---|---|
+| Re-runnable command, recipe, flag incantation | **skill file** (`~/.claude/skills/<name>/` or `~/astra/skills/<name>/`) | Loaded on-trigger, zero context cost when idle | `pac app push --environment X` deploy recipe |
+| Multi-step procedure with >2 steps or branches | **skill file** | Same | CI pipeline debug sequence |
+| Fact about a person, project, client, decision | **memory** (`astra-remember` with appropriate `--type`) | Graph is for entities, edges, temporal provenance | "Maxime prefers async updates over calls" |
+| Durable constraint or system invariant | **memory** (`--type learning` or `--type fact`) | Non-obvious, hard-won, re-derivable only through effort | "Kraken rejects USDT for CA residents" |
+| Project-local idiosyncrasy | **that project's `CLAUDE.md`** | Only loads when working in that project | "This app uses tenant X, auth flow Y" |
+| Universal exec-behavior rule | **this file (core ARCHITECTURE.md)** | Submodule pointer bump is an intentional friction gate | "Always ask before multi-day blocks without daily hours" |
+| Decision *about* a procedure | **BOTH** memory + skill | Decision = dated fact in graph; procedure = skill content; cross-reference | "Standardized on PAC CLI v1.4 because v1.5 breaks auth" → graph stores the decision, `pp-deploy` skill stores the v1.4 command |
+
+### Quality gates for memory
+
+A legitimate memory entry encodes an **entity, edge, relationship, decision with provenance, or non-obvious durable constraint**. Things that fail the gate:
+
+- A procedure restated as a "learning" → skill
+- A command cheatsheet → skill
+- Anything that re-derives from vendor docs in under a minute → save nothing
+- A skill's bug workaround → that skill's issue queue, not memory
+
+### Compensatory pollution — the failure mode to watch
+
+When a skill has a vague `description` frontmatter and fails to activate, agents stash the recipe via `astra-remember --type learning` because "better safe than lost." That silently pollutes the knowledge graph with skill-shaped content. Fix the skill trigger; do not feed the graph.
+
+### Operator heuristic
+
+> Re-runnable steps → skill. Facts, decisions, people, dates → `astra-remember`. Project-only quirks → that project's `CLAUDE.md`. If it re-derives from docs in under a minute, it is not a memory.
+
 ## Azure naming conventions
 
 Going forward (applies to any new resource):
