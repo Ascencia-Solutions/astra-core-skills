@@ -69,12 +69,15 @@ The previous section decides *which repo*. This section decides *which format* w
 
 ### Quality gates for memory
 
-A legitimate memory entry encodes an **entity, edge, relationship, decision with provenance, or non-obvious durable constraint**. Things that fail the gate:
+A legitimate memory entry encodes an **entity, edge, relationship, decision with provenance, or non-obvious *universal* durable constraint**. Things that fail the gate:
 
 - A procedure restated as a "learning" → skill
 - A command cheatsheet → skill
+- A **domain-specific constraint** — even a hard-won one — if it's only meaningful when working with one tool/vendor/platform → that domain's skill, not memory
 - Anything that re-derives from vendor docs in under a minute → save nothing
 - A skill's bug workaround → that skill's issue queue, not memory
+
+**Universal vs. domain-specific test.** Ask: *is this constraint only meaningful when using Tool X?* If yes, it's skill content — the skill is guaranteed to load when its domain activates, so the constraint travels with its domain. If the constraint is cross-cutting (affects decisions across multiple domains) or is a world-state fact independent of any single tool, then it belongs in memory. Only universal constraints stay in the graph; domain constraints ride with the skill.
 
 ### Compensatory pollution — the failure mode to watch
 
