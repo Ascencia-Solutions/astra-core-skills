@@ -87,6 +87,18 @@ When a skill has a vague `description` frontmatter and fails to activate, agents
 
 > Re-runnable steps → skill. Facts, decisions, people, dates → `astra-remember`. Project-only quirks → that project's `CLAUDE.md`. If it re-derives from docs in under a minute, it is not a memory.
 
+### Skill content discipline — timeless only
+
+Skill files (`SKILL.md`, `Pillars/`, `Workflows/`, sub-skill markdown) and operating canon (`CLAUDE.md`) encode **timeless principles only**. No dated incident references, no "this was added after the X failure" phrasing, no names of specific past incidents.
+
+Provenance for *why* a rule exists lives in exactly two places:
+1. **Git commit messages** — historical, only read via `git log`, full context appropriate
+2. **The knowledge graph** — as dated decisions-with-provenance entries
+
+Provenance does *not* live in: skill files, CLAUDE.md, or the dream log. The dream log describes what the cycle did that night, not why a rule was ever written.
+
+**The fresh-session test:** would this paragraph still make sense if read by a fresh Claude session 6 months from now with no memory of the incident? If no, it's not skill content — strip the provenance and move it to a commit message or KG entry.
+
 ## Azure naming conventions
 
 Going forward (applies to any new resource):
