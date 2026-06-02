@@ -20,8 +20,8 @@ Currently:
 ### Astra AI product (`Ascencia-Solutions/astra-ai`)
 Mounted as a git submodule at `api/skills/core/`. The Function App always loads every file in that directory and appends to the system prompt.
 
-### Astra Chief of Staff (`Ascencia-Solutions/astra-brain`)
-Mounted as a git submodule at `~/astra/skills/core/`. The CoS execution-layer skills (e.g. `calendar-manager/SKILL.md`) reference the core skill for behavior and layer bash recipes + personal context on top.
+### Astra Chief of Staff (`Ascencia-Solutions/astra-cos`)
+Mounted as a git submodule at `~/astra/skills/core/`. The CoS execution-layer skills (e.g. `time-management/SKILL.md`) reference the core skill for behavior and layer bash recipes + personal context on top.
 
 ## Editing rules
 
@@ -35,6 +35,6 @@ Mounted as a git submodule at `~/astra/skills/core/`. The CoS execution-layer sk
 Both consumer repos pin to a specific commit via submodule. To propagate a change:
 1. Edit here, commit + push to `main`
 2. In `astra-ai`: `cd api/skills/core && git pull origin main`, commit the new pointer, push
-3. In `astra-brain`: `cd ~/astra/skills/core && git pull origin main`, commit the pointer, push
+3. In `astra-cos`: `cd ~/astra/skills/core && git pull origin main`, commit the pointer, push
 
 This intentionally requires an explicit bump per consumer — so an edit here can't silently change production behavior without a commit on the consuming side.
