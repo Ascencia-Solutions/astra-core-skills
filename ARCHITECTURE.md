@@ -29,7 +29,7 @@ Both consumers mount `astra-core-skills` at the **same relative path name** on e
 - Product: `~/astra-ai/api/skills/core/`
 - CoS: `~/astra/skills/core/`
 
-Inside: `time-management.md`, `ARCHITECTURE.md` (this file), `README.md`. Add new core skills at the top level of that repo.
+Inside: `time-management.md`, `code-verify.md`, `ARCHITECTURE.md` (this file), `README.md`. Add new core skills at the top level of that repo.
 
 ## What each repo owns — and must never touch
 

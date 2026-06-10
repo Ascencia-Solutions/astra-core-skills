@@ -8,6 +8,7 @@ Canonical behavioral rules for Astra agents. Shared between the Astra AI product
 
 Currently:
 - `time-management.md` — unified calendar + to-do playbook (multi-day scheduling, occurrence grouping, reminder rules, prioritization, cross-domain intelligence, anti-patterns).
+- `code-verify.md` — task-class evidence templates for verifying code/config changes (what proof counts per artifact class, waiver discipline).
 
 ## What does NOT live here
 

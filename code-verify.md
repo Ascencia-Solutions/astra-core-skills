@@ -1,4 +1,6 @@
-# Code Verify — task-class evidence templates
+### code-verify
+
+Task-class evidence templates for verifying code and config changes.
 
 > Shared with Astra AI via the `core/` submodule. CoS skill wrapper lives at
 > `~/.claude/skills/code-verify/SKILL.md`.
@@ -82,8 +84,8 @@ first fails or doesn't fit.
 
 - **Preferred:** Stand-alone smoke-test script that simulates the JSON
   envelope Claude Code passes and asserts allow/block per the cases the
-  hook is meant to cover. (See `/tmp/verify-hook-smoketest.sh` from the
-  v1 build for the pattern.)
+  hook is meant to cover (pattern: `echo '<json>' | bash the-hook.sh;
+  echo $?` per case, asserting the expected exit code).
 - **Acceptable:** Manual replay against a captured stdin sample with the
   expected exit code printed.
 
