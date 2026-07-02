@@ -31,13 +31,17 @@ Both consumers mount `astra-core-skills` at the **same relative path name** on e
 
 Inside: `time-management.md`, `code-verify.md`, `ARCHITECTURE.md` (this file), `README.md`. Add new core skills at the top level of that repo.
 
+## Topology (since 2026-07)
+
+**Astra CoS runs exclusively on vm-paperclip.** Other machines (Jeremie's laptops, claude.ai web/mobile/desktop) run plain, stock Claude with no Astra persona, clone, hooks, or memory machinery — they reach CoS through its remote MCP connector (`astra-mcp.ascencia-solutions.ca`: delegation, skill playbooks, memory tools). There is no off-VM inbox queue, generated-view syncing, or laptop skill sync. Nothing in this paragraph affects Astra AI Product, which remains Azure-hosted with its own topology.
+
 ## What each repo owns — and must never touch
 
 | | Astra AI (product) | Astra CoS (personal) | Astra Core (shared) |
 |---|---|---|---|
 | **Runtime location** | Azure: Function App `astra-mcp-api`, SWA `astra-admin`, Postgres `astra-product-db` | vm-paperclip | n/a (text only) |
 | **Memory store** | Postgres `astra-product-db` (canadacentral) with tenant-isolated schema | SQLite `~/astra/memory.db` with sqlite-vec | n/a |
-| **Memory verb** | `api/lib/memory.ts` inside the backend only | `astra-remember` CLI (absolute path `~/bin/astra-remember`) | n/a |
+| **Memory verb** | `api/lib/memory.ts` inside the backend only | `astra-remember` CLI (absolute path `~/bin/astra-remember`; VM-only — remote sessions use the CoS connector's `remember` tool) | n/a |
 | **Write path** | Through the Function App, per-tenant, per-user | Bash scripts + dream cycle | Edit + commit to this repo |
 | **May read product memory?** | ✅ yes, that's its job | ❌ NEVER | ❌ |
 | **May read CoS memory?** | ❌ NEVER | ✅ yes, that's its job | ❌ |
